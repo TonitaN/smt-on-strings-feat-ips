@@ -91,11 +91,11 @@ class Lia_Formula():
             return my_string.var_name
 
         name = next(self.varnames_generator)
-        for mss in my_string.replace_strs:
-            self.string_interpretation_in_lia(mss)
-        self.string_to_lia[my_string] = name
+            # self.string_interpretation_in_lia(mss)
+        s = f'(+ (- {self.string_interpretation_in_lia(my_string.replace_strs[0])} (* {name} {self.string_interpretation_in_lia(my_string.replace_strs[1])}) ) (* {name} {self.string_interpretation_in_lia(my_string.replace_strs[2])}))'
+        self.string_to_lia[my_string] = s 
         self.variables.append(name)
-        return name
+        return s
 
     def clause_interpretation_in_lia(self, clause: Clause):
         literals_interpretations = [self.literal_interpretation_in_lia(

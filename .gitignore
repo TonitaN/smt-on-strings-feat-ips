@@ -11,6 +11,8 @@ fib_str.py
 
 formula_generator/generator_config.ini
 temp.smt2
+z3.exe
+z3.bat
 
 # tests/dpllt_tests/test_1.smt2
 # *.svg
