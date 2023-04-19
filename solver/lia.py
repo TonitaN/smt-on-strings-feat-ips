@@ -128,7 +128,7 @@ class Lia_Formula():
         except:
             raise Exception('Ошибка при создании/открытии временного файла')
 
-        for s in smt2_strings:
-            print(s)
+#        for s in smt2_strings:
+#            print(s)
 
         return not 'unsat' in str(subprocess.check_output(['z3', '-smt2', temp]), encoding='utf-8')
