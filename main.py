@@ -1,7 +1,7 @@
 from sys import argv
 from solver.dpllt import check_sat
 from solver.formula_generator import Generator
-from solver.lia import Lia_Formula
+from solver.lia import Lia_Formula, sliced_elements
 from solver.parser import Parser
 # from solver.structures import *
 
@@ -13,5 +13,11 @@ f = p.to_formula()
 # print(result)
 # print(f)
 lf = Lia_Formula(f)
-# print(lf)
 print(lf.check_sat())
+slices = sliced_elements(f.literals)
+for s in slices:
+    lf = Lia_Formula(f,s)
+    ss = lf.check_sat()
+    if not ss:
+        print(s)
+        print(ss)

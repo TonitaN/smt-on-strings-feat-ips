@@ -6,8 +6,8 @@
 (declare-fun x () String)
 
 (assert (= y (str.replace_all x "ac" "bcb" ) ))
-(assert (not (str.contains y "a")))
-(assert (str.contains yj "aa"))
 (assert (= yj (str.++ y x) ))
+(assert (str.contains yj "aa"))
+(assert (not (str.contains y "a")))
 
 (check-sat)
