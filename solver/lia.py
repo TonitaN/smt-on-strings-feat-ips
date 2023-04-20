@@ -112,7 +112,10 @@ class Lia_Formula():
 
         name = next(self.varnames_generator)
             # self.string_interpretation_in_lia(mss)
-        s = f'(+ (- {self.get_string_slice(my_string.replace_strs[0],sliced)} (* {name} {self.get_string_slice(my_string.replace_strs[1],sliced)}) ) (* {name} {self.get_string_slice(my_string.replace_strs[2],sliced)}))'
+        if my_string.replace_strs[1].stype == "const" and len(my_string.replace_strs[1].cont) == 1 and my_string.replace_strs[1].cont == sliced:
+            s = f'(+ (- {self.get_string_slice(my_string.replace_strs[0],sliced)} {self.get_string_slice(my_string.replace_strs[0],sliced)} ) (* {self.get_string_slice(my_string.replace_strs[0],sliced)} {self.get_string_slice(my_string.replace_strs[2],sliced)}))'
+        else:    
+            s = f'(+ (- {self.get_string_slice(my_string.replace_strs[0],sliced)} (* {name} {self.get_string_slice(my_string.replace_strs[1],sliced)}) ) (* {name} {self.get_string_slice(my_string.replace_strs[2],sliced)}))'
         self.string_to_lia[my_string] = s 
         self.variables.append(name)
         return s        
